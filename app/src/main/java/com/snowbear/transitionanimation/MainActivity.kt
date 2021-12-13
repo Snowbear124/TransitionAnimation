@@ -53,7 +53,8 @@ class MainActivity : AppCompatActivity() {
         val intent_2 = Intent(this, SecondActivity::class.java)
         intent_2.putExtra("slideAnimation", but)
         startActivity(intent_2)
-//        overridePendingTransition(R.anim.slide_up, R.anim.slide_down)
+        overridePendingTransition(R.anim.slide_up_in, R.anim.no_animation)
+
         when(but) {
             "up" -> overridePendingTransition(R.anim.slide_up_in, R.anim.no_animation)
             "down" -> overridePendingTransition(R.anim.slide_down_in, R.anim.no_animation)

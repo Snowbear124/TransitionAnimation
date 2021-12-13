@@ -17,12 +17,9 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
-        val up = GlobalVariable.up
-        val down = GlobalVariable.down
-        val left = GlobalVariable.left
-        val right = GlobalVariable.right
-
-
+        if(supportActionBar != null) {
+            supportActionBar!!.hide()
+        }
     }
 
     private fun setupTrainsition() {
@@ -51,8 +48,9 @@ class SecondActivity : AppCompatActivity() {
         }
     }
 
+
     override fun finish() {
-        super.finish()
+        super.finish()  //放最前面才能執行動畫
         when(intent.getStringExtra("slideAnimation")) {
             "up" -> overridePendingTransition(R.anim.no_animation, R.anim.slide_down_out)
             "down" -> overridePendingTransition(R.anim.no_animation, R.anim.slide_up_out)
@@ -60,7 +58,6 @@ class SecondActivity : AppCompatActivity() {
             "right" -> overridePendingTransition(R.anim.no_animation, R.anim.slide_left_out)
         }
         Log.d(TAG, "finish: run....")
-
     }
 
 //    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {

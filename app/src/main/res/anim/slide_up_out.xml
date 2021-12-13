@@ -4,4 +4,7 @@
     <translate
         android:fromYDelta="0"
         android:toYDelta="-100%" />
+    <alpha
+        android:fromAlpha="1.0"
+        android:toAlpha="0.2" />
 </set>
