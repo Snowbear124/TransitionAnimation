@@ -1,12 +1,16 @@
 package com.snowbear.transitionanimation
 
+import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.transition.Slide
+import android.view.Window
 import android.widget.Button
 import androidx.core.app.ActivityOptionsCompat
 
 class MainActivity : AppCompatActivity() {
+    val transitionName = "list_test"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         val but_down = findViewById<Button>(R.id.but_down)
         val but_left = findViewById<Button>(R.id.but_left)
         val but_right = findViewById<Button>(R.id.but_right)
+        val but_list = findViewById<Button>(R.id.but_list)
 
         val trainsition = listOf<String>("explode", "slide", "fade")
 
@@ -28,8 +33,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         but_down.setOnClickListener {
-//            startTransitionWithFlag(trainsition[2])
-            sliedTransition(down)
+            startTransitionWithFlag(trainsition[2])
+//            sliedTransition(down)
         }
 
         but_left.setOnClickListener {
@@ -38,6 +43,10 @@ class MainActivity : AppCompatActivity() {
 
         but_right.setOnClickListener {
             sliedTransition(right)
+        }
+
+        but_list.setOnClickListener {
+            shareTransition(but_list, transitionName)
         }
 
     }
@@ -61,6 +70,13 @@ class MainActivity : AppCompatActivity() {
             "left" -> overridePendingTransition(R.anim.slide_left_in, R.anim.no_animation)
             "right" -> overridePendingTransition(R.anim.slide_right_in, R.anim.no_animation)
         }
+    }
+
+    private fun shareTransition(viwe: Button, transitionName: String) {
+        val intent_3 = Intent(this, StretchListActivity::class.java)
+        val transitionActivity = ActivityOptions.makeSceneTransitionAnimation(this, viwe, transitionName)
+        intent_3.putExtra("flag", "explode")
+        startActivity(intent_3, transitionActivity.toBundle())
     }
 }
 

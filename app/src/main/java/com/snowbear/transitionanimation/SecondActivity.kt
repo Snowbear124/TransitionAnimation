@@ -13,13 +13,14 @@ import android.widget.Button
 class SecondActivity : AppCompatActivity() {
     val TAG = javaClass.simpleName
     override fun onCreate(savedInstanceState: Bundle?) {
-//        setupTrainsition() //requestFeature必須放在最前面
+        setupTrainsition() //requestFeature必須放在最前面
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
         if(supportActionBar != null) {
             supportActionBar!!.hide()
         }
+
     }
 
     private fun setupTrainsition() {
@@ -35,6 +36,7 @@ class SecondActivity : AppCompatActivity() {
             "slide" -> {
                 val sliderTrainsition = Slide()
                 sliderTrainsition.duration = 1000
+                sliderTrainsition.pathMotion
                 window.enterTransition = sliderTrainsition
                 window.exitTransition = sliderTrainsition
             }
